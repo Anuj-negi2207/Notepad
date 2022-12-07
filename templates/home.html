@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="column">
+    <div class="block">
+        <h1 class="title is-3">
+            {{user.username|upper}}'s Dweets
+        </h1>
+    </div>
+    <div class="content">
+        {% for notes in user.notes.all %}
+            <div class="box">
+                {{ notes.heading }} 
+                <span class="is-small has-text-grey-light">
+                    ({{ notes.created_at }})
+                </span>
+                <span style="white-space: pre-line" class="text">{{ notes.body }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="column is-one-third">
+
+    <div class="block">
+        <box class="is-dark is-outlined is-fullwidth">
+            Add a new note here
+        </box>
+    </div>
+    
+
+    <div class="block">
+        <div class="block">
+            <h2 class="title is-2">Add a Note</p>
+        </div>
+        <div class="block">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button is-success is-fullwidth is-medium mt-5"
+                        type="submit">Add note
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
