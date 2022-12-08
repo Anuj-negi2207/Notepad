@@ -5,17 +5,21 @@
 <div class="column">
     <div class="block">
         <h1 class="title is-3">
-            {{user.username|upper}}'s Dweets
+            {{user.username|upper}}'s Notes
         </h1>
     </div>
     <div class="content">
         {% for notes in user.notes.all %}
             <div class="box">
                 {{ notes.heading }} 
+                <div>
                 <span class="is-small has-text-grey-light">
                     ({{ notes.created_at }})
                 </span>
+                </div>
+                <div>
                 <span style="white-space: pre-line" class="text">{{ notes.body }}</span>
+                </div>
             </div>
         {% endfor %}
     </div>
